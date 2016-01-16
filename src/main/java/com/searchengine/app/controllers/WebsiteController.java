@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.searchengine.app.business.PagePatternBusiness;
-import com.searchengine.app.business.SearchEngineBusiness;
 import com.searchengine.app.business.SearchPatternBusiness;
 import com.searchengine.app.business.WebsiteBusiness;
 import com.searchengine.app.entities.Website;

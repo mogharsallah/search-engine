@@ -9,12 +9,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.searchengine.app.jsonquery.JSONProduct;
-import com.searchengine.app.jsonquery.JSONProducts;
 import com.searchengine.app.dao.PagePatternDao;
 import com.searchengine.app.dao.SearchPatternDao;
 import com.searchengine.app.dao.WebsiteDao;
 import com.searchengine.app.entities.Website;
+import com.searchengine.app.jsonquery.JSONProduct;
+import com.searchengine.app.jsonquery.JSONProducts;
 
 @Transactional
 public class SearchEngineBusinessImp implements SearchEngineBusiness {
@@ -45,7 +45,7 @@ public class SearchEngineBusinessImp implements SearchEngineBusiness {
 
 	@Override
 	public Elements getElements(Website w, String keyword) {
-		return getDocument(w,keyword).getElementsByClass(w.getPage().getProduct());
+		return getDocument(w,keyword).select(w.getPage().getProduct());
 	}
 
 	@Override

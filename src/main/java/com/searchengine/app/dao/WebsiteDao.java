@@ -1,8 +1,9 @@
 package com.searchengine.app.dao;
 import java.util.List;
-import com.searchengine.app.entities.Website;
-import com.searchengine.app.entities.SearchPattern;
+
 import com.searchengine.app.entities.PagePattern;
+import com.searchengine.app.entities.SearchPattern;
+import com.searchengine.app.entities.Website;
 
 public interface WebsiteDao {
 	public Website addWebsite(Website w);

@@ -3,7 +3,6 @@ package com.searchengine.app.dao;
 import java.util.List;
 
 import com.searchengine.app.entities.PagePattern;
-import com.searchengine.app.entities.SearchPattern;
 
 public interface PagePatternDao {
 	public PagePattern addPagePattern(PagePattern p);
