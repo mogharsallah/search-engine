@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	
+
+	<bean id="ppdao" class="com.searchengine.app.dao.PagePatternDaoImp"></bean>
+	<bean id="wdao" class="com.searchengine.app.dao.WebsiteDaoImp"></bean>
+	<bean id="spdao" class="com.searchengine.app.dao.SearchPatternDaoImp"></bean>
+	
+		<bean id="business" class="com.searchengine.app.business.SearchEngineBusinessImp" scope="prototype">
+		<property name="spdao" ref="spdao"></property>
+		<property name="ppdao" ref="ppdao"></property>
+		<property name="wdao" ref="wdao"></property>
+	</bean>	
+	<bean id="spbusiness" class="com.searchengine.app.business.SearchPatternBusinessImp">
+		<property name="spdao" ref="spdao"></property>
+		<property name="wdao" ref="wdao"></property>
+	</bean>
+		<bean id="ppbusiness" class="com.searchengine.app.business.PagePatternBusinessImp">
+		<property name="ppdao" ref="ppdao"></property>
+		<property name="wdao" ref="wdao"></property>
+	</bean>
+		<bean id="wbusiness" class="com.searchengine.app.business.WebsiteBusinessImp">
+		<property name="spdao" ref="spdao"></property>
+		<property name="ppdao" ref="ppdao"></property>
+		<property name="wdao" ref="wdao"></property>
+	</bean>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/dev"></property>
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+	<bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="defaultPersistenceUnitName" value="pUnit"/>
+		<property name="defaultDataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<property name="persistenceUnitManager" ref="persistenceUnitManager"></property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<property name="entityManagerFactory" ref="entityManagerFactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<context:annotation-config></context:annotation-config>
+	
+</beans>
