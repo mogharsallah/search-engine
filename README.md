@@ -22,5 +22,8 @@ Please refer to pom.xml file for the detailed list.
 
 ### Preview ###
 
+#### Front Page ####
 ![Front Page](http://i.imgur.com/6LOWhVX.png)
+
+#### Website CRUD Page ####
 ![Website CRUD page](http://i.imgur.com/cfJK1GS.png)
